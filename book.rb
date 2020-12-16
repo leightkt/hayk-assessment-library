@@ -17,13 +17,11 @@ class Book
     end
 
     def authors
-        authors = []
         BookAuthor.all.select do |bookauthor|
-            if bookauthor.book == self
-                authors << bookauthor.author.name
-            end
+            bookauthor.book == self
+        end.map do |bookauthor|
+            bookauthor.author.name
         end
-        authors
     end
 
 
