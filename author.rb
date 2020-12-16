@@ -17,15 +17,10 @@ class Author
     end
 
     def books
-        bookauthors = BookAuthor.all.select do |bookauthor|
-            bookauthor.author == self
-        end
         books = []
-        bookauthors.each do |bookauthor|
-            Book.all.each do |book|
-                if bookauthor.book == book
-                    books << book
-                end
+        BookAuthor.all.each do |bookauthor|
+            if bookauthor.author == self
+                books << bookauthor.book.title
             end
         end
         books
